@@ -1,0 +1,35 @@
+baseURL = "https://golang-cop.github.io/"
+title = "golang-cop"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Each repo card. These are early, hand-written generics/OOP primitives — there is
+# no CI, coverage gate, or SIMD here, so the cards stay honest about scope.
+# "role" = where the type sits (core plumbing vs. container/value type).
+[[params.repos]]
+  name = "result"
+  api = "Result.New(WithPayload / WithError) · Payload() · HasError() · Error()"
+  role = "core"
+  result = "The Result value type every other package returns: a payload plus an error, in the style of an Option/Result. Built on null and error, with a null-object default so a fresh Result is non-nil and error-free."
+[[params.repos]]
+  name = "error"
+  api = "Error.New(message) · Message() · IsNull() · src/null null-error"
+  role = "core"
+  result = "A small Error interface (Message, IsNull) with a null-object variant, so the absence of an error is itself a value rather than a nil check."
+[[params.repos]]
+  name = "null"
+  api = "Null.New() · null-object value"
+  role = "core"
+  result = "A null-object primitive used as the default payload across the org, so empty results carry a real value instead of nil interface{}."
+[[params.repos]]
+  name = "array"
+  api = "Array.New() · Each · Push · Pop · First · Last · Fetch · Clear · Copy"
+  role = "container"
+  result = "An interface{}-backed dynamic array whose methods return a Result, so iteration and access errors propagate through the same Result channel as everything else. Each can short-circuit on the first failing callback."
+[[params.repos]]
+  name = "string"
+  api = "String.New(WithGoString) · Set · ToGoString · Split · IsNull"
+  role = "container"
+  result = "A String value type over Go's string. Split returns a Result wrapping an array, threading the array, result and error primitives together."
