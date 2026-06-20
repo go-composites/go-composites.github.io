@@ -1,11 +1,11 @@
-baseURL = "https://golang-cop.github.io/"
-title = "golang-cop"
+baseURL = "https://go-composites.github.io/"
+title = "go-composites"
 disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
 [markup.goldmark.renderer]
   unsafe = true
 
-# Each repo card. These are early, hand-written generics/OOP primitives — there is
+# Each repo card. These are early, hand-written composites — there is
 # no CI, coverage gate, or SIMD here, so the cards stay honest about scope.
 # "role" = where the type sits (core plumbing vs. container/value type).
 [[params.repos]]

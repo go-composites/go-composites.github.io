@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ .Site.Title }} — object-oriented primitives for Go</title>
-<meta name="description" content="golang-cop: small, hand-written object-oriented building blocks for Go — a Result/Option value type, a null-object error, and array and string types that thread errors through a shared Result channel. Pure Go, BSD-3-Clause, early and experimental.">
+<title>{{ .Site.Title }} — composites for Composition-Oriented Programming in Go</title>
+<meta name="description" content="go-composites: small, hand-written composites for Composition-Oriented Programming in Go — a Result/Option value type, a null-object error, and array and string types that thread errors through a shared Result channel. Pure Go, BSD-3-Clause, early and experimental.">
 <style>
   :root {
     --bg: #ffffff; --fg: #1b1f24; --muted: #57606a; --card: #f6f8fa;
@@ -76,9 +76,9 @@
 <body>
   <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light, dark or system theme"><span id="theme-label">🖥️ System</span></button>
   <header class="wrap">
-    <img class="logo" src="/img/logo.svg" alt="golang-cop logo" width="88" height="88">
-    <h1>golang-cop</h1>
-    <p class="tagline">Small, hand-written <strong>object-oriented primitives</strong> for Go &mdash;
+    <img class="logo" src="/img/logo.svg" alt="go-composites logo" width="88" height="88">
+    <h1>go-composites</h1>
+    <p class="tagline">Small, hand-written <strong>composites</strong> for Go &mdash;
       a <code>Result</code>/<code>Option</code> value type, a null-object <code>Error</code>, and
       <code>array</code> and <code>string</code> types that thread failures through one shared
       <code>Result</code> channel.</p>
@@ -90,14 +90,15 @@
       <span class="pill">early &amp; experimental</span>
     </div>
     <div class="cta">
-      <a class="btn primary" href="https://github.com/golang-cop/result">Get started</a>
-      <a class="btn ghost" href="https://github.com/golang-cop">GitHub</a>
+      <a class="btn primary" href="https://github.com/go-composites/result">Get started</a>
+      <a class="btn ghost" href="https://github.com/go-composites">GitHub</a>
     </div>
   </header>
 
   <main class="wrap">
-    <p class="lead">golang-cop is an experiment in writing Go in an explicitly object-oriented style:
-      every package exposes an <code>Interface</code> with a <code>New</code> constructor, and operations
+    <p class="lead">go-composites is an experiment in Composition-Oriented Programming for Go:
+      composites are assembled by composition and interfaces rather than inheritance. Every package
+      exposes an <code>Interface</code> with a <code>New</code> constructor, and operations
       return a <code>Result</code> rather than Go's idiomatic multiple-return error. The null-object
       pattern runs throughout &mdash; a fresh <code>Result</code>, <code>Error</code> or <code>Null</code>
       is a real, non-nil value &mdash; so callers branch on <code>HasError()</code> instead of nil checks.</p>
@@ -112,7 +113,7 @@
       {{ range .Site.Params.repos }}
       <article class="card">
         <h3>
-          <a href="https://github.com/golang-cop/{{ .name }}"><code>{{ .name }}</code></a>
+          <a href="https://github.com/go-composites/{{ .name }}"><code>{{ .name }}</code></a>
           <span class="role {{ .role }}">{{ .role }}</span>
         </h3>
         <p class="api">{{ .api }}</p>
@@ -127,7 +128,7 @@
   </main>
 
   <footer class="wrap">
-    BSD-3-Clause · <a href="https://github.com/golang-cop">github.com/golang-cop</a>
+    BSD-3-Clause · <a href="https://github.com/go-composites">github.com/go-composites</a>
   </footer>
   <script>
   (function(){
