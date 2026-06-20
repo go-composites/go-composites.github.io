@@ -88,6 +88,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "combinator"
   result = "A first-class callable: wrap a Result-returning function and Call it, or chain with Then — feeding each payload to the next and short-circuiting on the first error. A callable value, where compose is a pipeline of steps."
 [[params.repos]]
+  name = "enumerator"
+  api = "New / Generate · Map · Filter · Take (lazy) · ToArray / Each / First / Reduce"
+  role = "combinator"
+  result = "A lazy sequence in the Ruby Enumerator::Lazy spirit. Map/Filter/Take are lazy — they wrap a producer and evaluate nothing until a terminal pulls items — so Take of a finite prefix terminates even an infinite Generate source. Terminals thread the shared Result channel."
+[[params.repos]]
   name = "compose"
   api = "Pipe(steps…) · Run(input, steps…) · Then · Map · Recover · Fail"
   role = "combinator"
@@ -96,7 +101,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
   role = "meta"
-  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
 [[params.repos]]
   name = "typed"
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
