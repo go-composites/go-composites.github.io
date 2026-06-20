@@ -43,6 +43,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "container"
   result = "A boxed numeric value over int and float. Arithmetic returns a Result, so division by zero is an error value rather than a panic."
 [[params.repos]]
+  name = "bignumber"
+  api = "BigNumber.FromInt64 · FromString → Result · Add/Sub/Mul/Div/Mod/Abs/Neg"
+  role = "container"
+  result = "An arbitrary-precision integer over math/big — Ruby's unbounded Integer. Same Result-based arithmetic as number (Div/Mod by zero are errors), so values never overflow or panic."
+[[params.repos]]
   name = "string"
   api = "String.New(WithGoString) · Set · ToGoString · Split · IsNull"
   role = "container"
@@ -63,6 +68,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "container"
   result = "An unordered collection of unique items, backed by a map. Carries the usual set algebra (union/intersection/difference, subset, equality) plus Each/ToArray, with a Null-Object variant."
 [[params.repos]]
+  name = "orderedset"
+  api = "OrderedSet.New(items…) · same algebra as set · insertion-ordered Each/ToArray"
+  role = "container"
+  result = "A set that remembers the order items were first added (slice + map). Same algebra as set but with deterministic iteration — handy when order matters and for reproducible output."
+[[params.repos]]
   name = "range"
   api = "Range.New(begin, end, WithStep / Exclusive) → Result · Includes · Each · ToArray"
   role = "container"
@@ -79,9 +89,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   result = "An interned, immutable identifier in the Ruby :name spirit — New(\"x\") and New(\"x\") are the same instance (a mutex-guarded registry), so identity comparison is cheap and exact."
 [[params.repos]]
   name = "time"
-  api = "Time.FromUnix · Time.Parse → Result · Before/After/Add/Sub · Duration"
+  api = "Time.FromUnix · Parse → Result · Before/After/Add/Sub · In/Zone/UTC · Duration"
   role = "container"
-  result = "A Time instant plus a Duration subpackage, over Go's stdlib time. Deterministic by design (no Now()); Parse returns a Result on bad input, never a panic. Time.Sub yields a Duration."
+  result = "A Time instant plus a Duration subpackage, over Go's stdlib time. Deterministic by design (no Now()); Parse returns a Result on bad input. IANA time zones via In/Zone/UTC (tzdata embedded for every arch). Time.Sub yields a Duration."
 [[params.repos]]
   name = "proc"
   api = "Proc.New(fn) · Call(args…) → Result · Then(next) railway"
@@ -101,7 +111,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
   role = "meta"
-  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, BigNumber, OrderedSet, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
 [[params.repos]]
   name = "typed"
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
