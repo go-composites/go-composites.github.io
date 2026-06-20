@@ -5,31 +5,85 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [markup.goldmark.renderer]
   unsafe = true
 
-# Each repo card. These are early, hand-written composites — there is
-# no CI, coverage gate, or SIMD here, so the cards stay honest about scope.
-# "role" = where the type sits (core plumbing vs. container/value type).
+# Each repo card. "role" = where the type sits:
+#   core       — foundational plumbing (null / error / result / base)
+#   container  — value & collection types (boolean / number / string / array / dictionary)
+#   combinator — higher-order composition over Result-returning steps
+#   meta       — the one-import facade re-exporting the whole vocabulary
+#   generic    — the type-parameterised parallel track
+#   tool       — predicates and the static analyzers that enforce the invariants
 [[params.repos]]
-  name = "result"
-  api = "Result.New(WithPayload / WithError) · Payload() · HasError() · Error()"
+  name = "null"
+  api = "Null.New() · null-object value"
   role = "core"
-  result = "The Result value type every other package returns: a payload plus an error, in the style of an Option/Result. Built on null and error, with a null-object default so a fresh Result is non-nil and error-free."
+  result = "A null-object primitive used as the default payload across the org, so empty results carry a real value instead of a nil interface{}."
 [[params.repos]]
   name = "error"
   api = "Error.New(message) · Message() · IsNull() · src/null null-error"
   role = "core"
   result = "A small Error interface (Message, IsNull) with a null-object variant, so the absence of an error is itself a value rather than a nil check."
 [[params.repos]]
-  name = "null"
-  api = "Null.New() · null-object value"
+  name = "result"
+  api = "Result.New(WithPayload / WithError) · Payload() · HasError() · Error()"
   role = "core"
-  result = "A null-object primitive used as the default payload across the org, so empty results carry a real value instead of nil interface{}."
+  result = "The Result value type every other package returns: a payload plus an error, in the style of an Option/Result. Built on null and error, with a null-object default so a fresh Result is non-nil and error-free."
 [[params.repos]]
-  name = "array"
-  api = "Array.New() · Each · Push · Pop · First · Last · Fetch · Clear · Copy"
+  name = "base"
+  api = "the shared foundation every composite builds on"
+  role = "core"
+  result = "Common scaffolding the other composites embed and reuse, keeping the per-repo surface small."
+[[params.repos]]
+  name = "boolean"
+  api = "Boolean.New(b) · True() · False() · IsTrue() · IsNull()"
   role = "container"
-  result = "An interface{}-backed dynamic array whose methods return a Result, so iteration and access errors propagate through the same Result channel as everything else. Each can short-circuit on the first failing callback."
+  result = "A boxed boolean composite. Its structural IsTrue() is what array's combinators recognise as truthy, without array having to import boolean."
+[[params.repos]]
+  name = "number"
+  api = "Number.New(WithInt / WithFloat) · arithmetic → Result"
+  role = "container"
+  result = "A boxed numeric value over int and float. Arithmetic returns a Result, so division by zero is an error value rather than a panic."
 [[params.repos]]
   name = "string"
   api = "String.New(WithGoString) · Set · ToGoString · Split · IsNull"
   role = "container"
   result = "A String value type over Go's string. Split returns a Result wrapping an array, threading the array, result and error primitives together."
+[[params.repos]]
+  name = "array"
+  api = "Array.New() · Each/Map/Filter/Reduce/Find/Any/All · Push/Pop/First/Last/Fetch"
+  role = "container"
+  result = "An interface{}-backed dynamic array whose methods all return a Result. Beyond stack access it carries functional combinators (Map, Filter, Reduce, Find, Any, All) that short-circuit on the first error Result."
+[[params.repos]]
+  name = "dictionary"
+  api = "Dictionary.New(WithPairs) · Get/Set → Result · IsNull"
+  role = "container"
+  result = "An interface-first key/value map. Get of a missing key returns a Result carrying an error, never a panic, matching the rest of the org's failure channel."
+[[params.repos]]
+  name = "compose"
+  api = "Compose(steps…) · Pipe(steps…) → a single Result-returning step"
+  role = "combinator"
+  result = "Composes Result-returning steps into one pipeline that threads the payload forward and short-circuits on the first error — function composition over the shared Result channel."
+[[params.repos]]
+  name = "composites"
+  api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
+  role = "meta"
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+[[params.repos]]
+  name = "typed"
+  api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
+  role = "generic"
+  result = "A generics parallel track: the same patterns with compile-time type safety, so a payload-type mismatch becomes a build error. Complementary to — not a replacement for — the reflective, dynamic composites."
+[[params.repos]]
+  name = "is"
+  api = "predicate helpers for asking questions about composites"
+  role = "tool"
+  result = "Small predicate helpers for interrogating composites — the question-asking side of the reflective, message-passing style."
+[[params.repos]]
+  name = "nonnil"
+  api = "go vet analyzer · enforces the Null-Object invariant"
+  role = "tool"
+  result = "A go vet-style analyzer that fails the build when an interface carrying IsNull() is returned, assigned, or stored as a bare nil. Runs in CI on every repo."
+[[params.repos]]
+  name = "respondto"
+  api = "go vet analyzer · checks reflective dispatch targets"
+  role = "tool"
+  result = "A go vet-style analyzer for reflective sends: it flags RespondTo / method-name calls whose target method does not exist, catching typo'd dynamic dispatch at build time."
