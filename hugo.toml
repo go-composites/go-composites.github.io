@@ -58,6 +58,36 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "container"
   result = "An interface-first key/value map. Get of a missing key returns a Result carrying an error, never a panic, matching the rest of the org's failure channel."
 [[params.repos]]
+  name = "set"
+  api = "Set.New(items…) · Add/Delete/Has · Union/Intersection/Difference · IsSubset"
+  role = "container"
+  result = "An unordered collection of unique items, backed by a map. Carries the usual set algebra (union/intersection/difference, subset, equality) plus Each/ToArray, with a Null-Object variant."
+[[params.repos]]
+  name = "range"
+  api = "Range.New(begin, end, WithStep / Exclusive) → Result · Includes · Each · ToArray"
+  role = "container"
+  result = "A numeric integer interval — inclusive (..) or exclusive (...), with a non-zero step. New returns a Result (a zero step is an error, not a panic); elements are exposed as Numbers."
+[[params.repos]]
+  name = "pair"
+  api = "Pair.New(first, second) · First · Second · Equal · ToArray"
+  role = "container"
+  result = "A fixed two-element heterogeneous grouping — the natural key/value entry. Equal compares both slots; ToArray materialises a two-element Array. Null-Object variant included."
+[[params.repos]]
+  name = "symbol"
+  api = "Symbol.New(name) · interned · ToGoString · Equal · Inspect"
+  role = "container"
+  result = "An interned, immutable identifier in the Ruby :name spirit — New(\"x\") and New(\"x\") are the same instance (a mutex-guarded registry), so identity comparison is cheap and exact."
+[[params.repos]]
+  name = "time"
+  api = "Time.FromUnix · Time.Parse → Result · Before/After/Add/Sub · Duration"
+  role = "container"
+  result = "A Time instant plus a Duration subpackage, over Go's stdlib time. Deterministic by design (no Now()); Parse returns a Result on bad input, never a panic. Time.Sub yields a Duration."
+[[params.repos]]
+  name = "proc"
+  api = "Proc.New(fn) · Call(args…) → Result · Then(next) railway"
+  role = "combinator"
+  result = "A first-class callable: wrap a Result-returning function and Call it, or chain with Then — feeding each payload to the next and short-circuiting on the first error. A callable value, where compose is a pipeline of steps."
+[[params.repos]]
   name = "compose"
   api = "Pipe(steps…) · Run(input, steps…) · Then · Map · Recover · Fail"
   role = "combinator"
@@ -66,7 +96,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
   role = "meta"
-  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
 [[params.repos]]
   name = "typed"
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
