@@ -34,7 +34,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   result = "Common scaffolding the other composites embed and reuse, keeping the per-repo surface small."
 [[params.repos]]
   name = "boolean"
-  api = "Boolean.New(b) · True() · False() · IsTrue() · IsNull()"
+  api = "Boolean.New(b) · True() · False() · IsTrue() · IsFalse() · Equal · Inspect"
   role = "container"
   result = "A boxed boolean composite. Its structural IsTrue() is what array's combinators recognise as truthy, without array having to import boolean."
 [[params.repos]]
@@ -59,9 +59,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   result = "An interface-first key/value map. Get of a missing key returns a Result carrying an error, never a panic, matching the rest of the org's failure channel."
 [[params.repos]]
   name = "compose"
-  api = "Compose(steps…) · Pipe(steps…) → a single Result-returning step"
+  api = "Pipe(steps…) · Run(input, steps…) · Then · Map · Recover · Fail"
   role = "combinator"
-  result = "Composes Result-returning steps into one pipeline that threads the payload forward and short-circuits on the first error — function composition over the shared Result channel."
+  result = "Pipe composes Result-returning steps into one left-to-right pipeline that threads the payload forward and short-circuits on the first error; Run applies it to an input, with Recover/Fail for error handling — function composition over the shared Result channel."
 [[params.repos]]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
@@ -72,11 +72,6 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
   role = "generic"
   result = "A generics parallel track: the same patterns with compile-time type safety, so a payload-type mismatch becomes a build error. Complementary to — not a replacement for — the reflective, dynamic composites."
-[[params.repos]]
-  name = "is"
-  api = "predicate helpers for asking questions about composites"
-  role = "tool"
-  result = "Small predicate helpers for interrogating composites — the question-asking side of the reflective, message-passing style."
 [[params.repos]]
   name = "nonnil"
   api = "go vet analyzer · enforces the Null-Object invariant"
