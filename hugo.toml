@@ -118,6 +118,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "container"
   result = "A Time instant plus a Duration subpackage, over Go's stdlib time. Deterministic by design (no Now()); Parse returns a Result on bad input. IANA time zones via In/Zone/UTC (tzdata embedded for every arch). Time.Sub yields a Duration."
 [[params.repos]]
+  name = "date"
+  api = "Date.FromYMD / Parse Â· Year/Month/Day/Weekday Â· AddDays Â· DaysBetween Â· comparisons"
+  role = "container"
+  result = "A calendar date (year/month/day, no time) â Ruby's Date. FromYMD/Parse return a Result so an invalid date (Feb 30) is a value, not a panic; AddDays/DaysBetween do calendar arithmetic. Null-Object variant."
+[[params.repos]]
   name = "proc"
   api = "Proc.New(fn) · Call(args…) → Result · Then(next) railway"
   role = "combinator"
@@ -136,7 +141,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
   role = "meta"
-  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, BigNumber, Rational, Complex, BigFloat, OrderedSet, SortedSet, Buffer, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Date, Proc, Enumerator, BigNumber, Rational, Complex, BigFloat, OrderedSet, SortedSet, Buffer, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
 [[params.repos]]
   name = "typed"
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
