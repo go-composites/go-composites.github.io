@@ -58,10 +58,20 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "container"
   result = "A complex number a+bi — Ruby's Complex, over Go's complex128. Add/Sub/Mul/Div return a Result (÷ by 0+0i is an error, not NaN); Abs is the magnitude, Conjugate flips the sign of the imaginary part."
 [[params.repos]]
+  name = "bigfloat"
+  api = "BigFloat.FromFloat64 / FromString → Result · arithmetic · ToFloat64"
+  role = "container"
+  result = "An arbitrary-precision float over math/big.Float (256-bit). More precision than float64 where it matters; division by zero is an error Result. Rounds out the numeric tower next to bignumber and rational."
+[[params.repos]]
   name = "string"
   api = "String.New(WithGoString) · Set · ToGoString · Split · IsNull"
   role = "container"
   result = "A String value type over Go's string. Split returns a Result wrapping an array, threading the array, result and error primitives together."
+[[params.repos]]
+  name = "buffer"
+  api = "Buffer.New() / From(s) · Append · AppendRune · Reset · ToGoString · Len"
+  role = "container"
+  result = "A mutable text buffer (StringBuilder) over strings.Builder — the mutable counterpart to the immutable string value. Append/AppendRune/Reset mutate in place and chain. Zero dependencies."
 [[params.repos]]
   name = "array"
   api = "Array.New() · Each/Map/Filter/Reduce/Find/Any/All · Push/Pop/First/Last/Fetch"
@@ -82,6 +92,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   api = "OrderedSet.New(items…) · same algebra as set · insertion-ordered Each/ToArray"
   role = "container"
   result = "A set that remembers the order items were first added (slice + map). Same algebra as set but with deterministic iteration — handy when order matters and for reproducible output."
+[[params.repos]]
+  name = "sortedset"
+  api = "SortedSet.New(less, items…) · sorted Each/ToArray · First/Last (min/max)"
+  role = "container"
+  result = "A set kept sorted by a comparator (sorted slice + map), TreeSet-like. Iteration is in comparator order and First/Last give the min/max in O(1). Set algebra preserves the order."
 [[params.repos]]
   name = "range"
   api = "Range.New(begin, end, WithStep / Exclusive) → Result · Includes · Each · ToArray"
@@ -121,7 +136,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
   role = "meta"
-  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, BigNumber, Rational, Complex, OrderedSet, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, BigNumber, Rational, Complex, BigFloat, OrderedSet, SortedSet, Buffer, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
 [[params.repos]]
   name = "typed"
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
