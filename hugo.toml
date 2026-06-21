@@ -48,6 +48,16 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "container"
   result = "An arbitrary-precision integer over math/big — Ruby's unbounded Integer. Same Result-based arithmetic as number (Div/Mod by zero are errors), so values never overflow or panic."
 [[params.repos]]
+  name = "rational"
+  api = "Rational.FromInts / FromString → Result · Numerator/Denominator · ToFloat · arithmetic"
+  role = "container"
+  result = "An exact rational over math/big.Rat — Ruby's Rational. Fractions stay exact (1/3 + 1/6 == 1/2, no float error); division by a zero rational is an error Result."
+[[params.repos]]
+  name = "complex"
+  api = "Complex.New(re, im) · FromReal · Real/Imaginary · Abs · Conjugate · arithmetic"
+  role = "container"
+  result = "A complex number a+bi — Ruby's Complex, over Go's complex128. Add/Sub/Mul/Div return a Result (÷ by 0+0i is an error, not NaN); Abs is the magnitude, Conjugate flips the sign of the imaginary part."
+[[params.repos]]
   name = "string"
   api = "String.New(WithGoString) · Set · ToGoString · Split · IsNull"
   role = "container"
@@ -111,7 +121,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
   role = "meta"
-  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, BigNumber, OrderedSet, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Proc, Enumerator, BigNumber, Rational, Complex, OrderedSet, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
 [[params.repos]]
   name = "typed"
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
