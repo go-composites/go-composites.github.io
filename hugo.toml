@@ -98,6 +98,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "container"
   result = "A set kept sorted by a comparator (sorted slice + map), TreeSet-like. Iteration is in comparator order and First/Last give the min/max in O(1). Set algebra preserves the order."
 [[params.repos]]
+  name = "bag"
+  api = "Bag.New(itemsâ¦) Â· Add/Remove Â· Count Â· Sum/Union/Intersection/Difference"
+  role = "container"
+  result = "A multiset / counter â items with multiplicity. Count(item) gives occurrences; multiset algebra adds/maxes/mins/subtracts counts. Completes the collection family next to set, orderedset and sortedset."
+[[params.repos]]
   name = "range"
   api = "Range.New(begin, end, WithStep / Exclusive) → Result · Includes · Each · ToArray"
   role = "container"
@@ -141,7 +146,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   name = "composites"
   api = "import \"github.com/go-composites/composites\" · type aliases + constructors"
   role = "meta"
-  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Date, Proc, Enumerator, BigNumber, Rational, Complex, BigFloat, OrderedSet, SortedSet, Buffer, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
+  result = "The meta-package: one import that re-exports the whole vocabulary (Array, Boolean, String, Number, Dictionary, Set, Range, Pair, Symbol, Time, Date, Proc, Enumerator, BigNumber, Rational, Complex, BigFloat, OrderedSet, SortedSet, Bag, Buffer, Result, Error, Null) as type aliases and constructor values — zero wrapping cost, full interoperability."
 [[params.repos]]
   name = "typed"
   api = "Result[T] · Optional[T] · Slice[T] (Map/Filter/Reduce/Find/Any/All)"
