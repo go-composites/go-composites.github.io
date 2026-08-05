@@ -99,9 +99,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   result = "A set kept sorted by a comparator (sorted slice + map), TreeSet-like. Iteration is in comparator order and First/Last give the min/max in O(1). Set algebra preserves the order."
 [[params.repos]]
   name = "bag"
-  api = "Bag.New(itemsâ¦) Â· Add/Remove Â· Count Â· Sum/Union/Intersection/Difference"
+  api = "Bag.New(items…) · Add/Remove · Count · Sum/Union/Intersection/Difference"
   role = "container"
-  result = "A multiset / counter â items with multiplicity. Count(item) gives occurrences; multiset algebra adds/maxes/mins/subtracts counts. Completes the collection family next to set, orderedset and sortedset."
+  result = "A multiset / counter — items with multiplicity. Count(item) gives occurrences; multiset algebra adds/maxes/mins/subtracts counts. Completes the collection family next to set, orderedset and sortedset."
 [[params.repos]]
   name = "range"
   api = "Range.New(begin, end, WithStep / Exclusive) → Result · Includes · Each · ToArray"
@@ -124,9 +124,9 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   result = "A Time instant plus a Duration subpackage, over Go's stdlib time. Deterministic by design (no Now()); Parse returns a Result on bad input. IANA time zones via In/Zone/UTC (tzdata embedded for every arch). Time.Sub yields a Duration."
 [[params.repos]]
   name = "date"
-  api = "Date.FromYMD / Parse Â· Year/Month/Day/Weekday Â· AddDays Â· DaysBetween Â· comparisons"
+  api = "Date.FromYMD / Parse · Year/Month/Day/Weekday · AddDays · DaysBetween · comparisons"
   role = "container"
-  result = "A calendar date (year/month/day, no time) â Ruby's Date. FromYMD/Parse return a Result so an invalid date (Feb 30) is a value, not a panic; AddDays/DaysBetween do calendar arithmetic. Null-Object variant."
+  result = "A calendar date (year/month/day, no time) — Ruby's Date. FromYMD/Parse return a Result so an invalid date (Feb 30) is a value, not a panic; AddDays/DaysBetween do calendar arithmetic. Null-Object variant."
 [[params.repos]]
   name = "proc"
   api = "Proc.New(fn) · Call(args…) → Result · Then(next) railway"
@@ -154,11 +154,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   result = "A generics parallel track: the same patterns with compile-time type safety, so a payload-type mismatch becomes a build error. Complementary to — not a replacement for — the reflective, dynamic composites."
 [[params.repos]]
   name = "nonnil"
+  org = "go-vet-analyzers"
   api = "go vet analyzer · enforces the Null-Object invariant"
   role = "tool"
-  result = "A go vet-style analyzer that fails the build when an interface carrying IsNull() is returned, assigned, or stored as a bare nil. Runs in CI on every repo."
+  result = "A go vet-style analyzer that fails the build when an interface carrying IsNull() is returned, assigned, or stored as a bare nil. Runs in CI on every repo. Now maintained in the go-vet-analyzers org."
 [[params.repos]]
   name = "respondto"
+  org = "go-vet-analyzers"
   api = "go vet analyzer · checks reflective dispatch targets"
   role = "tool"
-  result = "A go vet-style analyzer for reflective sends: it flags RespondTo / method-name calls whose target method does not exist, catching typo'd dynamic dispatch at build time."
+  result = "A go vet-style analyzer for reflective sends: it flags RespondTo / method-name calls whose target method does not exist, catching typo'd dynamic dispatch at build time. Now maintained in the go-vet-analyzers org."
