@@ -121,7 +121,7 @@
       {{ range .Site.Params.repos }}
       <article class="card">
         <h3>
-          <a href="https://github.com/go-composites/{{ .name }}"><code>{{ .name }}</code></a>
+          <a href="https://github.com/{{ default "go-composites" .org }}/{{ .name }}"><code>{{ .name }}</code></a>
           <span class="role {{ .role }}">{{ .role }}</span>
         </h3>
         <p class="api">{{ .api }}</p>
