@@ -153,6 +153,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   role = "generic"
   result = "A generics parallel track: the same patterns with compile-time type safety, so a payload-type mismatch becomes a build error. Complementary to — not a replacement for — the reflective, dynamic composites."
 [[params.repos]]
+  name = "benchmarks"
+  api = "go-composites vs idiomatic Go vs Ruby MRI"
+  role = "meta"
+  result = "What the style costs, measured rather than argued: every operation run three ways — the composite, the Go a programmer would actually write, and Ruby MRI. Consistently slower than raw Go, from about 1.4x on dictionary insert to about 121x on a tight integer loop, because every operation boxes its operands into interface{} and allocates a Result. Where the composite is doing real container work it still generally beats MRI. The point is to quantify, not to flatter."
+[[params.repos]]
   name = "nonnil"
   org = "go-vet-analyzers"
   api = "go vet analyzer · enforces the Null-Object invariant"
