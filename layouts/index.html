@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{/* Dark Reader repaints pages that already draw their own dark theme, as this one does: ask it to stand aside. */}}
+<meta name="darkreader-lock">
 <title>{{ .Site.Title }} — composites for Composition-Oriented Programming in Go</title>
 <meta name="description" content="go-composites: small, hand-written composites for Composition-Oriented Programming in Go — a Result/Option value type, a null-object error, and boolean, number, string, array and dictionary types that thread errors through a shared Result channel. Pure Go, BSD-3-Clause, 100% coverage, nonnil + respondto analyzers.">
 <style>
