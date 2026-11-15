@@ -45,11 +45,9 @@
       a <code>Result</code>/<code>Option</code> value type, a null-object <code>Error</code>, and
       <code>array</code> and <code>string</code> types that thread failures through one shared
       <code>Result</code> channel.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="https://github.com/go-composites/result">{{ partial "icons/rocket.html" . }}Get started</a>
-        <a class="btn btn-ghost" href="https://github.com/go-composites">{{ partial "icons/github.html" . }}GitHub</a>
-      </div>
-      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">pure Go · cgo-free</span>{{ end }}<span class="pill">null-object pattern</span><span class="pill">Result / Option value type</span><span class="pill">100% coverage · 6-arch CI</span><span class="pill">nonnil / respondto analyzers</span>{{ if not (partial "mantra-on.html" $) }}<span class="pill">BSD-3-Clause</span>{{ end }}</div>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<span class="pill">pure Go · cgo-free</span>{{ end }}{{ end }}<span class="pill">null-object pattern</span><span class="pill">Result / Option value type</span><span class="pill">100% coverage · 6-arch CI</span><span class="pill">nonnil / respondto analyzers</span>{{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<span class="pill">BSD-3-Clause</span>{{ end }}{{ end }}</div>
     </div>
     {{ partial "hero-carousel.html" . }}
   </div></div>
